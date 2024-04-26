@@ -1,3 +1,5 @@
+// a documentação do código segue no link: https://docs.google.com/document/d/1I0_lO7Mfdl5abvrezDNJVdVVml-P0TxcDfFsmNbPyyA/edit?usp=sharing
+
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
@@ -12,12 +14,12 @@ int ingressos_disponiveis = NUM_INGRESSOS;
 
 void *compra_ingresso(void *thread_id) {
     int tid = *((int *)thread_id);
-    int status_compra=0;
+    int status_compra=0;\
+    int ingressos_desejados = 1+rand()%3;
     while(status_compra==0)
     {
         pthread_mutex_lock(&mutex);
 
-        int ingressos_desejados = 1+rand()%3;
 
         if (ingressos_disponiveis >= ingressos_desejados) {
             printf("Pessoa %d comprou %d ingressos.\n", tid,ingressos_desejados);
